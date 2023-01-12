@@ -6,9 +6,14 @@ var cookieParser = require('cookie-parser');
 connectToMongo();
 require('dotenv').config();
 const app = express();
+app.use(express.static(__dirname));
+app.set('views', __dirname + '/public');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 app.use(cors({ origin: '*', credentials: true, optionSuccessStatus: 200, }));
 app.use(cookieParser());
 app.use(express.json())
+app.get('/', function (req, res){res.render('index.html');});
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api', require('./routes/api'))
 app.use('/poll/api', require('./routes/poll'))
