@@ -18,8 +18,22 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api', require('./routes/api'))
 app.use('/poll/api', require('./routes/poll'))
 const http = require("http");
+// var http=require('http');
+// var url=require('url');
 const { Server } = require("socket.io");
 const server = http.createServer(app);
+// var server=http.createServer(function(req,res){
+//     var pathname=url.parse(req.url).pathname;
+//     switch(pathname){
+//         case '/subpage':
+//             res.end('subpage');
+//         break;
+//         default:
+//             res.end('default');
+//         break;
+//     }
+
+// });
 server.listen(process.env.PORT || 8000, () => { console.log(`listening at http://localhost:${process.env.PORT || 8000}`) });
 // const host = "http://localhost:3000";
 const host = "http://chat.thekoushikdurgas.in";
